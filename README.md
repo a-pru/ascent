@@ -13,7 +13,7 @@
 @inproceedings{prutsch2026ascent,
     title={{ASCENT: Transformer-Based Aircraft Trajectory Prediction in Non-Towered Terminal Airspace}},
     author={Prutsch, Alexander and Schinagl, David and Possegger, Horst},
-    booktitle={In Proceedings of the International Conference on Robotics and Automation},
+    booktitle={In Proceedings of the IEEE International Conference on Robotics and Automation},
     year={2026}
 }
 ```
