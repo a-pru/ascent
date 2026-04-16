@@ -30,7 +30,7 @@
   <meta name="citation_author" content="Prutsch, Alexander">
   <meta name="citation_publication_date" content="2026">
   <meta name="citation_conference_title" content="IEEE International Conference on Robotics and Automation">
-  <meta name="citation_pdf_url" content="https://arxiv.org/abs/2603.XXXXXX">
+  <meta name="citation_pdf_url" content="https://arxiv.org/abs/2603.16550">
   
   <!-- Additional SEO -->
   <meta name="theme-color" content="#2563eb">
@@ -105,7 +105,7 @@
     },
     "keywords": ["Motion Forecasting", "Trajectory Prediction", "General Aviation", "Computer Vision for Transportation"], 
     "abstract": "Accurate trajectory prediction can improve General Aviation safety in non-towered terminal airspace, where high traffic density increases accident risk. We present ASCENT, a lightweight transformer-based model for multi-modal 3D aircraft trajectory forecasting, which integrates domain-aware 3D coordinate normalization and parameterized predictions. ASCENT employs a transformer-based motion encoder and a query-based decoder, enabling the generation of diverse maneuver hypotheses with low latency. Experiments on the TrajAir and TartanAviation datasets demonstrate that our model outperforms prior baselines, as the encoder effectively captures motion dynamics and the decoder aligns with structured aircraft traffic patterns. Furthermore, ablation studies confirm the contributions of the decoder design, coordinate-frame modeling, and parameterized outputs. These results establish ASCENT as an effective approach for real-time aircraft trajectory prediction in non-towered terminal airspace.",
-    "citation": "@inproceedings{prutsch2026ascemt, title={{	ASCENT: Transformer-Based Aircraft Trajectory Prediction in Non-Towered Terminal Airspace }}, author={Prutsch, Alexander and Schinagl, David and Possegger, Horst}, booktitle={In Proceedings of the IEEE International Conference on Robotics and Automation}, year={2026}"},
+    "citation": "@inproceedings{prutsch2026ascemt, title={{ASCENT: Transformer-Based Aircraft Trajectory Prediction in Non-Towered Terminal Airspace }}, author={Prutsch, Alexander and Schinagl, David and Possegger, Horst}, booktitle={In Proceedings of the IEEE International Conference on Robotics and Automation}, year={2026}"},
     "isAccessibleForFree": true,
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "about": [
@@ -131,6 +131,15 @@
     "logo": "https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-small-768x263.png",
   }
   </script>
+  <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
 <body>
 
@@ -181,7 +190,7 @@
                 </span>
 
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2603.XXXXX" target="_blank"
+                  <a href="https://arxiv.org/abs/2603.16550" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
@@ -214,12 +223,85 @@
 
 <section class="section hero">
   <div class="container is-fullhd has-text-centered">
-    <h2 class="title is-3">*Page Under Construction*</h2>
+    <h2 class="title is-3">Motivation and Contributions</h2>
     <div class="columns is-centered has-text-centered">
       <div class="column is-full">
         <ul class="has-text-left" style="display: inline-block; text-align: left; list-style-type: disc; padding-left: 1.5em;">
-          <!-- <li> Coming soon! -->
+          <li>General Aviation (GA) represents majority of aircraft, frequently operating between non-towered airports without active Air Traffic Control (ATC)</li>
+          <li>The accident rate in GA is approximately 30 times higher than in commercial aviation, mostly occurring near airports</li>
+          <li>Accurate trajectory prediction is crucial for early conflict detection and improving airspace safety systems in these unmanaged areas</li>
+          <li>Autonomous driving research lead to highly sophisticated prediction models, which provide a strong foundation also for other domains</li>
+          <li><strong>Challenges</strong>
+          <ul style="list-style-type: square; padding-left: 1.5em;">
+            <li>Methods from autonomous driving cannot be directly applied due to distinct domain differences</li>
+            <li>Airplanes do not follow strict lane networks; flight paths are only loosely defined by runways and airspace procedures</li>
+            <li>Aircraft operate in complex 3D space, whereas 2D bird's-eye-view modeling is usually sufficient for vehicles</li>
+            <li>Aviation prediction horizons span several minutes, significantly longer than the few seconds required in automotive benchmarks</li>
+          </ul>
+          </li>
+          <div style="font-size: 2rem; margin-top: 1em;">
+            <strong>Key Contributions</strong>
+          </div>
+          <div style="display: flex; align-items: flex-start; font-size: 1.25rem; margin-top: 1em; margin-left: 0.8em;">
+            <span style="margin-right: 0.8em; color: #000000;">&#10141;</span>
+            <strong>Novel transformer-based architecture specifically tailored to the unique challenges of 3D aircraft trajectory prediction</strong>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; font-size: 1.25rem; margin-top: 1em; margin-left: 0.8em;">
+            <span style="margin-right: 0.8em; color: #000000;">&#10141;</span>
+            <strong>Achieves a new state-of-the-art on the widely used TrajAir dataset across multiple evaluation settings</strong>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; font-size: 1.25rem; margin-top: 1em; margin-left: 0.8em;">
+            <span style="margin-right: 0.8em; color: #000000;">&#10141;</span>
+            <strong>First to report trajectory prediction results and cross-dataset evaluations on the newly released TartanAviation dataset</strong>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; font-size: 1.25rem; margin-top: 1em; margin-left: 0.8em;">
+            <span style="margin-right: 0.8em; color: #000000;">&#10141;</span>
+            <strong>Extensive ablation studies demonstrating the effectiveness of the proposed model design choices</strong>
+          </div>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-fullhd has-text-centered">
+        <h2 class="title is-3">Approach</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <ul class="has-text-left" style="display: inline-block; text-align: left; list-style-type: disc; padding-left: 1.5em; border: 100px">  
+        <p>
+          Our model adapts proven best practices from autonomous driving research to tackle the unique challenges of 3D aircraft trajectory prediction. It forecasts multi-modal future 3D positions over $T_f$ steps based on $T_h$ historical steps, generating $k$ trajectory candidates with associated probability scores. The architecture is built on the following core components:
+        </p>
+          <ul style="list-style-type: square; padding-left: 1.5em; padding-bottom: 30px;">
+            <li><strong>Agent-Centric Coordinate Normalization:</strong> To prevent global position bias and effectively learn local maneuvers (e.g., turns, dives, climbs), we transform historical global coordinates into a local coordinate system. This is achieved by subtracting the most recent position and rotating the data based on the aircraft's estimated horizontal (yaw $\gamma$) and vertical (pitch $\theta$) orientation.</li>
+            <li><strong>Novel 3D Positional Embedding:</strong> Because local normalization discards global context (like runway proximity), we capture this relationship using a custom 3D positional embedding. This embeds the global position ($x, y, z$) along with the orientation angles ($\gamma$, $\theta$).</li>
+            <li><strong>Self-Attention Motion Encoding:</strong> The normalized local history is projected into a feature space, combined with temporal encodings, and processed through transformer-based self-attention blocks. Max-pooling reduces this to a single motion feature vector, which is then fused with the global 3D positional embedding.</li>
+            <li><strong>Learnable Mode Queries:</strong> To generate multi-modal outputs, the decoder broadcasts the encoded motion feature and adds $k$ learnable mode queries. An MLP then decodes the probability scores for each candidate trajectory.</li>
+            <li><strong>Kinematic Parameter Prediction:</strong> Rather than predicting raw 3D coordinates, the decoder forecasts physical flight parameters (speed, and the sine/cosine of target yaw and pitch angles). The angles are computed via arctangent to ensure stable loss behavior within $[-\pi, \pi]$.</li>
+            <li><strong>Global Space Projection:</strong> Finally, the model computes the future 3D positions using these kinematic parameters and applies an inverse coordinate transformation to map the predictions back to the global 3D space.</li>
+          </ul>
+        </ul>
+        <br>
+        <div class="content has-text-centered" border="100px">
+          <img src="static/images/overview.svg" alt="Architecture Overview" loading="lazy" style="width: 80%; min-width: 500px;"/>
+        </div>
+        <h3 class="title is-4">Coordinate Normalization</h3>
+        <div class="content has-text-centered">
+        <video 
+          controls 
+          autoplay 
+          muted 
+          loop 
+          playsinline 
+          style="width: 40%; min-width: 500px; border-radius: 8px;">
+          <source src="static/videos/coord_normalization.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </div>
@@ -250,6 +332,28 @@
       playsinline 
       style="width: 40%; min-width: 500px; border-radius: 8px;">
       <source src="static/videos/00706.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="content has-text-centered">
+    <video 
+      controls 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      style="width: 40%; min-width: 500px; border-radius: 8px;">
+      <source src="static/videos/00661.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <video 
+      controls 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      style="width: 40%; min-width: 500px; border-radius: 8px;">
+      <source src="static/videos/00926.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
