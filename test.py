@@ -19,8 +19,8 @@ def main():
     torch.set_printoptions(linewidth=None, profile=None, sci_mode=None)
     np.set_printoptions(suppress=True, precision=4)
     
-    ##Dataset params
-    parser=argparse.ArgumentParser(description='Visualize Ascent model')
+    # CLI parameter configuration
+    parser=argparse.ArgumentParser(description='Test Ascent model')
     parser.add_argument('--dataset_folder',type=str, default='/dataset/')
     parser.add_argument('--dataset_name', type=str, default='')
     parser.add_argument('--exp_folder', type=str, required=True)

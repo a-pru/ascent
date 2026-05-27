@@ -313,7 +313,7 @@ class TrajectoryDataset(Dataset):
         self.seq_len = self.obs_len + self.pred_len
         self.delim = delim
         self.seq_final_len = self.obs_len + int(math.ceil(self.pred_len/self.pred_step))
-        all_files = os.listdir(self.data_dir)
+        all_files = sorted(os.listdir(self.data_dir))
         all_files = [os.path.join(self.data_dir, _path) for _path in all_files]
         num_agents_in_seq = []
         seq_list = []
