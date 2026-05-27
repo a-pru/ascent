@@ -1,0 +1,14 @@
+# Datasets and data files
+_dataset**
+dataset/**/*.pt
+dataset/**/*.txt
+dataset/**/*.zip
+dataset/**/*.csv
+
+# Training runs and logs
+runs/
+runs**
+
+# Python cache and compiled files
+**/__pycache__/
+**/*.pyc
