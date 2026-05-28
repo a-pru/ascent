@@ -1,7 +1,14 @@
+<div align="center">
+
 # ASCENT: Transformer-Based Aircraft Trajectory Prediction in Non-Towered Terminal Airspace
 
-### Paper
-> **ASCENT: Transformer-Based Aircraft Trajectory Prediction in Non-Towered Terminal Airspace**
+[![arXiv](https://img.shields.io/badge/arXiv-2603.16550-b31b1b.svg?style=flat-square)](https://arxiv.org/abs/2603.16550)
+[![Project Page](https://img.shields.io/badge/Project-Page-blue.svg?style=flat-square&logo=googlechrome&logoColor=white)](https://a-pru.github.io/ascent/)
+[![Poster](https://img.shields.io/badge/ICRA%202026-Poster-brightgreen.svg?style=flat-square&logo=adobeacrobatreader&logoColor=white)](docs/static/pdfs/prutsch_ascent_icra2026_poster.pdf)
+
+</div>
+
+> [**ASCENT: Transformer-Based Aircraft Trajectory Prediction in Non-Towered Terminal Airspace**](https://arxiv.org/abs/2603.16550)  
 > Alexander Prutsch, David Schinagl, Horst Possegger
 > **Graz University of Technology**  
 > **ICRA 2026**
@@ -46,12 +53,22 @@ For each run, a new directory is created in runs/ containing checkpoints, log fi
 ## Evaluation
 ### Pretrained Models
 We provide pretrained checkpoints for TrajAir split days1-4 with 16s history as input (lower group in paper Table 1) in the `checkpoints` folder.  
-To run evaluations to for example:  
-`python test.py --exp_folder checkpoints/model_7days1/ --epoch 11`
+Run evaluation:   
+`python test.py --exp_folder checkpoints/model_7days1/ --epoch 11`  
+
+Expected results:   
+
+| minADE5 | minFDE5 |
+| :--- | :--- |
+| 0.313 | 0.562 |
 
 ### Custom Runs
 To evaluate a custom model, select its experiment folder and choose an epoch. You can optionally select a dataset split; if left blank, the split defaults to the one defined in the training configuration.  
 `python test.py --exp_folder runs/2026-XX-XX_XX-XX-XX/ --dataset_name 7days1 --epoch 10`
+
+## Visualization
+Visualize TrajAir prediction results:    
+`python visualize.py --exp_folder checkpoints/model_7days1/ --epoch 11`  
 
 ## Bibtex
 ```bibtex
